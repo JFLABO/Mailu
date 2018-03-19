@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM resin/raspberrypi3-alpine-python:2.7
 
 RUN apk add --no-cache fetchmail ca-certificates
 
