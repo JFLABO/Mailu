@@ -1,5 +1,20 @@
 ![Logo](docs/assets/logo.png)
 
+Fork
+=======
+This fork modifies some base images to be compatible with raspberry pi.
+
+Instructions for use:
+Copy docker-compose.yml.sample to docker-compose.yml
+Copy .env.sample to .env
+Modify .env for your own requirements
+If using SSL certificates, you should pre-create the volume 'certs' and 
+add the relevant cert.pem and key.pem files to the root of that volume.
+Build & bring up all images with docker-compose up (-d for background mode)
+
+Original Readme
+=======
+
 Mailu is a simple yet full-featured mail server as a set of Docker images.
 It is free software (both as in free beer and as in free speech), open to
 suggestions and external contributions. The project aims at providing people
