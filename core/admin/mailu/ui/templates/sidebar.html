@@ -17,11 +17,6 @@
       </a>
     </li>
     <li>
-      <a href="{{ url_for('.user_forward') }}">
-        <i class="fa fa-share"></i> <span>{% trans %}Auto-forward{% endtrans %}</span>
-      </a>
-    </li>
-    <li>
       <a href="{{ url_for('.user_reply') }}">
         <i class="fa fa-plane"></i> <span>{% trans %}Auto-reply{% endtrans %}</span>
       </a>
@@ -82,6 +77,11 @@
       </a>
     </li>
     {% endif %}
+    <li>
+      <a href="{{ url_for('.client') }}">
+        <i class="fa fa-laptop"></i> <span>{% trans %}Client setup{% endtrans %}</span>
+      </a>
+    </li>
     <li>
       <a href="{{ config["WEBSITE"] }}">
         <i class="fa fa-globe"></i> <span>{% trans %}Website{% endtrans %}</span>
