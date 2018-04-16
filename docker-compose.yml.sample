@@ -4,6 +4,7 @@ services:
 
   front:
     build: core/nginx
+    image: mfashby/mailu_nginx
     restart: always
     env_file: .env
     ports:
@@ -30,12 +31,14 @@ services:
 
   redis:
     build: redis
+    image: mfashby/mailu_redis
     restart: always
     volumes:
       - "$ROOT/redis:/data"
 
   imap:
     build: core/dovecot
+    image: mfashby/mailu_dovecot
     restart: always
     env_file: .env
     volumes:
@@ -47,6 +50,7 @@ services:
 
   smtp:
     build: core/postfix
+    image: mfashby/mailu_postfix
     restart: always
     env_file: .env
     volumes:
@@ -57,6 +61,7 @@ services:
 
   antispam:
     build: services/rspamd
+    image: mfashby/mailu_rspamd
     restart: always
     env_file: .env
     volumes:
@@ -75,6 +80,7 @@ services:
 
   webdav:
     build: optional/radicale
+    image: mfashby/mailu_radicale
     restart: always
     env_file: .env
     volumes:
@@ -82,6 +88,7 @@ services:
 
   admin:
     build: core/admin
+    image: mfashby/mailu_admin
     restart: always
     env_file: .env
     volumes:
@@ -93,6 +100,7 @@ services:
 
   webmail:
     build: webmails/rainloop
+    image: mfashby/mailu_rainloop
     restart: always
     env_file: .env
     volumes:
@@ -100,6 +108,7 @@ services:
 
   fetchmail:
     build: services/fetchmail
+    image: mfashby/mailu_fetchmail
     restart: always
     env_file: .env
     volumes:
