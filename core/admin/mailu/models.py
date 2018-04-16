@@ -162,7 +162,7 @@ class Email(object):
         """
         from_address = '{}@{}'.format(
             app.config['POSTMASTER'], app.config['DOMAIN'])
-        with smtplib.SMTP('smtp', port=10025) as smtp:
+        with smtplib.SMTP(app.config['HOST_AUTHSMTP'], port=10025) as smtp:
             msg = text.MIMEText(body)
             msg['Subject'] = subject
             msg['From'] = from_address
@@ -183,6 +183,7 @@ class User(Base, Email):
     password = db.Column(db.String(255), nullable=False)
     quota_bytes = db.Column(db.Integer(), nullable=False, default=10**9)
     global_admin = db.Column(db.Boolean(), nullable=False, default=False)
+    enabled = db.Column(db.Boolean(), nullable=False, default=True)
 
     # Features
     enable_imap = db.Column(db.Boolean(), nullable=False, default=True)
@@ -256,7 +257,7 @@ class User(Base, Email):
     @classmethod
     def login(cls, email, password):
         user = cls.query.get(email)
-        return user if (user and user.check_password(password)) else None
+        return user if (user and user.enabled and user.check_password(password)) else None
 
 login_manager.user_loader(User.query.get)
 
