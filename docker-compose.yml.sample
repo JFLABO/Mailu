@@ -3,7 +3,7 @@ version: '2'
 services:
 
   front:
-    build: core/nginx
+    #build: core/nginx
     image: mfashby/mailu_nginx
     restart: always
     env_file: .env
@@ -30,14 +30,14 @@ services:
       - "$ROOT/certs:/certs"
 
   redis:
-    build: redis
+    #build: redis
     image: mfashby/mailu_redis
     restart: always
     volumes:
       - "$ROOT/redis:/data"
 
   imap:
-    build: core/dovecot
+    #build: core/dovecot
     image: mfashby/mailu_dovecot
     restart: always
     env_file: .env
@@ -49,7 +49,7 @@ services:
       - front
 
   smtp:
-    build: core/postfix
+    #build: core/postfix
     image: mfashby/mailu_postfix
     restart: always
     env_file: .env
@@ -60,7 +60,7 @@ services:
       - front
 
   antispam:
-    build: services/rspamd
+    #build: services/rspamd
     image: mfashby/mailu_rspamd
     restart: always
     env_file: .env
@@ -72,14 +72,14 @@ services:
       - front
 
         #antivirus:
-        #    build: core/none
+        #    #build: core/none
         #    restart: always
         #    env_file: .env
         #    volumes:
         #      - "$ROOT/filter:/data"
 
   webdav:
-    build: optional/radicale
+    #build: optional/radicale
     image: mfashby/mailu_radicale
     restart: always
     env_file: .env
@@ -87,7 +87,7 @@ services:
       - "$ROOT/dav:/data"
 
   admin:
-    build: core/admin
+    #build: core/admin
     image: mfashby/mailu_admin
     restart: always
     env_file: .env
@@ -99,7 +99,7 @@ services:
       - redis
 
   webmail:
-    build: webmails/rainloop
+    #build: webmails/rainloop
     image: mfashby/mailu_rainloop
     restart: always
     env_file: .env
@@ -107,7 +107,7 @@ services:
       - "$ROOT/webmail:/data"
 
   fetchmail:
-    build: services/fetchmail
+    #build: services/fetchmail
     image: mfashby/mailu_fetchmail
     restart: always
     env_file: .env
