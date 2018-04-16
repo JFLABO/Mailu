@@ -7,8 +7,8 @@ This fork modifies some base images to be compatible with raspberry pi.
 Instructions for use:
 - Run the following commands to download docker-compose file and environment variables
 
-`wget -o docker-compose.yml https://raw.githubusercontent.com/MFAshby/Mailu/master/docker-compose.yml.sample`
-`wget -o .env https://raw.githubusercontent.com/MFAshby/Mailu/master/.env.sample`
+`wget -O docker-compose.yml https://raw.githubusercontent.com/MFAshby/Mailu/master/docker-compose.yml.sample`
+`wget -O .env https://raw.githubusercontent.com/MFAshby/Mailu/master/.env.sample`
 - Modify .env for your own requirements
 - If using SSL certificates, you should add the relevant cert.pem and key.pem files to /var/lib/mailu/certs/
 - Bring up all images with docker-compose up (-d for background mode)
