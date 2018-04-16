@@ -15,7 +15,7 @@ Instructions for use:
 
 If you prefer to build the images yourself:
 - Clone the repository
-- Copy docker-compose.yml.sample to docker-compose.yml
+- Copy docker-compose.yml.sample to docker-compose.yml and uncomment the build: sections
 - Copy .env.sample to .env and modify as you require
 - Run the following to start 
 
