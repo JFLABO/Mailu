@@ -11,6 +11,7 @@ import os
 import docker
 import socket
 import uuid
+import redis
 
 from werkzeug.contrib import fixers
 
@@ -25,8 +26,10 @@ default_config = {
     'BABEL_DEFAULT_LOCALE': 'en',
     'BABEL_DEFAULT_TIMEZONE': 'UTC',
     'BOOTSTRAP_SERVE_LOCAL': True,
-    'RATELIMIT_STORAGE_URL': 'redis://redis',
+    'RATELIMIT_STORAGE_URL': 'redis://redis/2',
+    'QUOTA_STORAGE_URL': 'redis://redis/1',
     'DEBUG': False,
+    'DOMAIN_REGISTRATION': False,
     # Statistics management
     'INSTANCE_ID_PATH': '/data/instance',
     'STATS_ENDPOINT': '0.{}.stats.mailu.io',
@@ -85,6 +88,9 @@ manager.add_command('db', flask_migrate.MigrateCommand)
 # Babel configuration
 babel = flask_babel.Babel(app)
 translations = list(map(str, babel.list_translations()))
+
+# Quota manager
+quota = redis.Redis.from_url(app.config.get("QUOTA_STORAGE_URL"))
 
 @babel.localeselector
 def get_locale():
