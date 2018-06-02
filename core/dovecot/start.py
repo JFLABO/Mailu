@@ -6,8 +6,8 @@ import socket
 import glob
 
 # Actual startup script
-os.environ["FRONT_ADDRESS"] = socket.gethostbyname("front")
-os.environ["REDIS_ADDRESS"] = socket.gethostbyname("redis")
+os.environ["FRONT_ADDRESS"] = socket.gethostbyname(os.environ.get("FRONT_ADDRESS", "front"))
+os.environ["REDIS_ADDRESS"] = socket.gethostbyname(os.environ.get("REDIS_ADDRESS", "redis"))
 if os.environ["WEBMAIL"] != "none":
     try:
 	os.environ["WEBMAIL_ADDRESS"] = socket.gethostbyname("webmail")

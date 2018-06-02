@@ -22,11 +22,13 @@ if "HOST_ANTISPAM" not in args:
     args["HOST_ANTISPAM"] = "antispam:11334"
 
 # TLS configuration
+cert_name = os.getenv("TLS_CERT_FILENAME", default="cert.pem")
+keypair_name = os.getenv("TLS_KEYPAIR_FILENAME", default="key.pem")
 args["TLS"] = {
-    "cert": ("/certs/cert.pem", "/certs/key.pem"),
+    "cert": ("/certs/%s" % cert_name, "/certs/%s" % keypair_name),
     "letsencrypt": ("/certs/letsencrypt/live/mailu/fullchain.pem",
         "/certs/letsencrypt/live/mailu/privkey.pem"),
-    "mail": ("/certs/cert.pem", "/certs/key.pem"),
+    "mail": ("/certs/%s" % cert_name, "/certs/%s" % keypair_name),
     "mail-letsencrypt": ("/certs/letsencrypt/live/mailu/fullchain.pem",
         "/certs/letsencrypt/live/mailu/privkey.pem"),
     "notls": None
@@ -40,5 +42,5 @@ if args["TLS"] and not all(os.path.exists(file_path) for file_path in args["TLS"
 convert("/conf/tls.conf", "/etc/nginx/tls.conf", args)
 convert("/conf/proxy.conf", "/etc/nginx/proxy.conf", args)
 convert("/conf/nginx.conf", "/etc/nginx/nginx.conf", args)
-if os.path.exists("/var/log/nginx.pid"):
+if os.path.exists("/var/run/nginx.pid"):
     os.system("nginx -s reload")
