@@ -1,4 +1,5 @@
-![Logo](docs/assets/logo.png)
+<p align="leftr"><img src="docs/assets/logomark.png" alt="Mailu" height="200px"></p>
+
 
 Fork
 =======
