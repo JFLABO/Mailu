@@ -1,3 +1,8 @@
+Archived
+========
+I no longer use this myself, and unfortunately I have no time available to maintain it.
+
+
 <p align="leftr"><img src="docs/assets/logomark.png" alt="Mailu" height="200px"></p>
 
 
